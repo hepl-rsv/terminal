@@ -269,6 +269,10 @@ Deux raccourcis pratiques :
 * Si l'on omet l'argument de cible (et donc tape `cd` seul), on sera redirigé vers le **dossier de départ** de l'utilisateur connecté.
 * Si on utilise `-` (*moins*) comme cible (et donc tape `cd -`), on sera redirigé vers le répertoire précédent le dernier changement (un peu comme le bouton *précédent* d'un navigateur web)
 
+##### Complétion dans le shell
+
+La plupart des **shell** intègrent un système de complétion plus ou moins avancé : commencez à taper une commande ou un chemin puis utilisez la touche `TAB` : le shell va vous proposer les choix possibles à sa portée, ou, s'il n'y a qu'un seul choix, complétera votre élément.
+
 #### Lister le contenu d'un dossier
 
 Lorsqu'on se trouve dans un dossier, il peut être utile d'en **lister le contenu**. La commande **ls** (*list segments*) s'en occupe.
@@ -329,3 +333,48 @@ Dorénavant, si nous tapons `l`, ça reviendra au même que de taper `ls -FAlh`.
 > **Note :** ce que nous venons de créer un alias *temporaire* ; après la fin de notre session sur le serveur, il ne sera plus actif.  
 > Nous verrons un peu plus tard comment créer des alias *permanents*.
 
+#### Afficher le contenu d'un fichier
+
+Grâce à **cd** et **ls**, nous pouvons naviguer dans notre arborescence et lister le contenu d'un dossier.
+
+Mais comment peut-on afficher le contenu d'un fichier ?
+
+Pour cela, on a l'embarras du choix.
+
+> **Note :** les 4 commandes qui suivent affiche le contenu d'un fichier *sans* le modifier.
+
+##### cat
+
+La commande **cat** (*concatenate*) affiche le contenu des fichiers passés en arguments, l'un après l'autre : 
+
+	$ cat fichier-un.txt fichier-deux.txt
+	
+Le *hic*, c'est que l'affichage est brut et pas forcément pratique. Sans compter qu'il arrive que sur certains terminaux, il n'est pas possible de *scroller*, et donc de consulter l'entièreté d'un (long) fichier.
+
+##### less
+
+La commande **less** (un jeu de mots sur la commande *more* de laquelle elle est inspirée : *less is more*) affiche le contenu du fichier passé en argument, page par page :
+
+	$ less fichier.txt
+
+Le contenu du fichier est affiché, et vous pouvez utiliser les touches `haut` et `bas` pour naviguer lignes par lignes, la touche `espace` pour la page suivante, la touche `b` pour la page précédente, et la touche `q` pour quitter `less`.
+
+> **Attention :** ne pas confondre la commande UNIX **less** avec le langage [less](http://lesscss.org/).
+
+##### head
+
+La commande **head** permet d'afficher les *10 premières lignes* d'un fichier :
+
+	$ head fichier.txt
+	
+Elle peut recevoir une option `-n` précisant le nombre de lignes à afficher :
+
+	$ head -n 5 fichier.txt
+
+##### tail
+
+La commande **tail** permet d'afficher les *10 dernières lignes* d'un fichier : 
+
+	$ tail fichier.txt
+	
+Elle peut recevoir la même option `-n` que **head**, ainsi qu'une option `-f`, très pratique, qui va "*suivre*" le fichier et mettre à jour son affichage à chaque fois qu'une ligne y sera ajoutée (pratique pour consulter des fichiers de log en temps réel).
