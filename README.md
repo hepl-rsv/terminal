@@ -173,3 +173,70 @@ Avant d'aller plus loin, faisons un peu de ménage. Si vous vous sentez perdu de
 
 	$ clear
 
+### Arborescence et navigation
+
+Comme vous le savez probablement déjà, les fichiers présent sur un ordinateur sont organisés sous forme d'une **arborescence** de **dossiers** (*folders*, aussi nommés *répertoires*) et de **fichiers** (*files*).
+
+#### Chemin
+
+La *position* d'un fichier ou dossier donné dans l'arborescence s'appelle son **chemin** (*path*), et est exprimée sous la forme d'une chaîne où chaque étape est séparée par `/` (*slash*).  
+> **Note :** sur windows, les *slash* sont remplacés par des `\` (*anti-slash*).
+
+Par exemple, le chemin (*absolu*) du présent document, sur mon mac : `/Users/leny/Works/hepl/terminal/README.md`.
+
+Un chemin peut être **relatif** ou **absolu**.
+
+##### Chemin absolu
+
+Un chemin est dit **absolu** quand il indique l'emplacement de la cible depuis **la racine** du système : quelle que soit notre position de départ, un chemin absolu sera toujours valide.
+
+##### Chemin relatif
+
+Un chemin est dit **relatif** quand il indique l'emplacement d'une cible par rapport à un autre endroit de l'arborescence : si notre position de départ change, il est probable que notre chemin relatif ne soit plus valide.
+
+###### Dossier courant
+
+Dans un chemin, utiliser un `.` (*point*) indique le **dossier courant**. Par exemple, le chemin `./images/cat.png` est le chemin vers un fichier nommé **cat.png**, dans un dossier nommé **images**, qui est contenu dans le dossier courant.
+
+###### Dossier parent
+
+Dans un chemin, utiliser `..` (deux *point*s) indique le **dossier parent**. Par exemple, le chemin `../contents/presentation.txt` est le chemin vers un fichier nommé **presentation.txt**, dans un dossier **contents**, qui se trouve dans le dossier parent au dossier courant.
+
+La notation `..` permet donc de *remonter d'un niveau* dans l'arborescence.  
+
+On peut bien sûr la chaîner pour remonter de plusieurs niveaux, par exemple `../../../config`, pour un dossier nommé **config** qui se trouve dans le parent du parent du parent du dossier courant.
+
+#### Structure de l'arborescence
+
+Dans les systèmes basés sur Unix (linux, macOS, et d'autres), il existe une arborescence de fichiers **unique** (quel que soit le nombre de disques durs).
+
+Dans les systèmes Windows, il existe une arborescence **pour chaque disque dur**.
+
+##### Racine
+
+La **racine** est le sommet d'une arborescence, le plus haut qu'on puisse remonter.
+
+Dans les systèmes basés sur UNIX, elle est nommée `/`.
+
+Dans les systèmes Windows, elle est propre à chaque disque et est nommée en fonction de la lettre attribuée au disque, par exemple `C:\`.
+
+Nous allons essentiellement travailler avec des systèmes Linux, et le serveur sur lequel nous sommes connectés en est un. Par défaut, l'arborescence de la plupart des serveurs sous linux se structure comme suit :
+
+	/ (racine)
+		bin (binaires, commandes et programmes accessibles à tous)
+		dev (device, fichiers spéciaux des périphériques)
+		etc (Editing Text Config, fichiers de configuration du système)
+		home (contient les dossiers de départ de chaque utilisateur)
+		lib (ressources globales utilisées par le système)
+		tmp (dossier temporaire, vidé - par défaut - à chaque redémarrage de la machine)
+		usr (Unix System Resources, données et applications utilisées par les utilisateurs du système)
+		var (données diverses et variables, notamment les log)
+ 
+##### Dossier utilisateur
+
+Chaque utilisateur du système y a généralement un dossier propre, nommé **dossier de départ** (*home directory*), qui contient ses documents et ses fichiers de configuration. Sous linux, ce dossier se situe dans `/home` et porte le nom de l'utilisateur. Par exemple, le chemin vers le dossier de départ de l'utilisateur **leny** est `/home/leny`. 
+
+###### Chemins relatifs au dossier utilisateur
+
+La plupart des **shell** offrent un raccourci pour exprimer un chemin relatif au dossier de départ de l'utilisateur courant, le `~` (*tilde*).  
+Par exemple, le chemin vers le fichier **photo.jpg** se trouvant dans le dossier de départ de l'utilisateur **leny** peut s'exprimer `/home/leny/photo.jpg` ou aussi `~/photo.jpg`.
