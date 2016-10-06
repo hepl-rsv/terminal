@@ -89,3 +89,41 @@ La plupart des commandes ont une documentation, accessible via la commande `man`
 	$ man ssh
 	
 Ou parfois via le flag `-h` ou `--help`, si `man` ne retourne rien.
+
+### Connexion à un serveur distant
+
+Pour commencer, nous allons travailler sur le serveur de l'école, pour lequel vous avez reçu (ou allez recevoir) un *login*, un *password* et l'*adresse du serveur*.   
+Nous allons donc utiliser **ssh** (Secure SHell) pour ouvrir un shell sur un serveur distant.
+
+Par défaut, ssh se connecte via le port 22. Le serveur de l'école étant configuré pour que ssh écoute sur le port 22, nous n'avons pas besoin de le préciser.
+
+Par contre, par défaut, ssh essaie de se connecter à un serveur distant en utilisant *votre nom d'utilisateur actuel*. Celui-ci ne concordant pas avec celui de votre compte sur le serveur de l'école, nous allons devoir manuellement l'indiquer, avec l'option `-l [LOGIN]`.
+
+Notre commande de connexion sera donc la suivante :
+
+	$ ssh -l [LOGIN] [SERVER_ADDRESS]
+	
+La connexion devrait s'établir et ssh va vous demander votre mot de passe.  
+**ATTENTION :** sur la plupart des shell, quand un mot de passe est demandé, les caractères entrés ne sont pas affichés à l'écran : c'est donc *tout à fait normal* de ne rien voir pendant que vous taper votre mot de passe.
+
+**Note :** lors de la première connexion à un serveur, ssh va vous poser une question de routine sur la sécurité de la connexion au serveur donné. Validez en tapant "`yes`".
+
+Si tout se passe bien, vous devriez avoir un petit message de bienvenue, suivi de votre invite de commande, qui devrait ressembler à ceci : 
+
+	Linux SERVER_NAME 3.2.0-4-amd64 #1 SMP Debian 3.2.65-1+deb7u2 x86_64
+
+	The programs included with the Debian GNU/Linux system are free software;
+	the exact distribution terms for each program are described in the
+	individual files in /usr/share/doc/*/copyright.
+	
+	Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+	permitted by applicable law.
+	Last login: Thu Oct  6 14:41:47 2016 from 82.212.176.7
+	userXX@SERVER_NAME:~$
+	
+### Effacer le contenu de l'écran
+
+Avant d'aller plus loin, faisons un peu de ménage. Si vous vous sentez perdu devant l'encombrement d'informations sur la console, la commande `clear` permet d'effacer le contenu de l'écran, histoire d'y revoir clair à nouveau.
+
+	$ clear
+	
