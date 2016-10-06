@@ -88,6 +88,8 @@ La plupart des commandes ont une documentation, accessible via la commande `man`
 
 	$ man ssh
 	
+> **Note :** pour fermer une page man, tapez simplement sur `q`.
+	
 Ou parfois via le flag `-h` ou `--help`, si `man` ne retourne rien.
 
 ### Connexion à un serveur distant
@@ -240,3 +242,90 @@ Chaque utilisateur du système y a généralement un dossier propre, nommé **do
 
 La plupart des **shell** offrent un raccourci pour exprimer un chemin relatif au dossier de départ de l'utilisateur courant, le `~` (*tilde*).  
 Par exemple, le chemin vers le fichier **photo.jpg** se trouvant dans le dossier de départ de l'utilisateur **leny** peut s'exprimer `/home/leny/photo.jpg` ou aussi `~/photo.jpg`.
+
+#### Dossier de travail
+
+Lorsqu'on utilise la console, il ne faut pas oublier un paramètre très important : le **dossier de travail** (*working directory*), qui représente le chemin **depuis** lequel vont être lancées nos commandes.  
+Par défaut, il est indiqué dans le **prompt**, mais, en fonction de votre configuration, il pourrait ne pas être affiché, ou tronqué.
+
+La commande **pwd** (pour *print working directory*) va afficher à l'écran le chemin du répertoire de travail courant.
+
+#### Naviguer dans l'arborescence
+
+Par défaut, lors d'une connexion *via* **ssh**, l'utilisateur est connecté dans son dossier de départ (`/home/[USERNAME]`).
+
+Pour modifier le dossier de travail et naviguer dans l'arborescence, nous allons utiliser la commande **cd** (*change directory*).
+
+	$ cd [TARGET_PATH]
+	
+Elle reçoit comme argument le chemin du dossier vers lequel on veut aller. Ce chemin peut être *absolu* ou *relatif*.
+
+	$ cd /home/leny/images
+	
+	$ cd ../contents
+	
+Deux raccourcis pratiques :
+
+* Si l'on omet l'argument de cible (et donc tape `cd` seul), on sera redirigé vers le **dossier de départ** de l'utilisateur connecté.
+* Si on utilise `-` (*moins*) comme cible (et donc tape `cd -`), on sera redirigé vers le répertoire précédent le dernier changement (un peu comme le bouton *précédent* d'un navigateur web)
+
+#### Lister le contenu d'un dossier
+
+Lorsqu'on se trouve dans un dossier, il peut être utile d'en **lister le contenu**. La commande **ls** (*list segments*) s'en occupe.
+
+	$ ls [TARGET_DIRECTORY]
+	
+Si l'on omet l'argument cible, **ls** listera le contenu du *dossier de travail*.
+
+Par défaut, le style d'affichage de **ls** n'est pas très lisible et surtout pas très pratique. Heureusement, il existe un floppée d'options qu'on peut lui passer pour modifier son affichage.
+
+Après une rapide lecture dans le *manuel*, nous allons utiliser les options suivantes :
+
+* `-A`, qui affiche tous les fichiers (y compris les fichiers cachés), à l'exception des références interne vers `.` et `..`
+* `-F`, qui va ajouter pour chaque élément un caractère pour nous aider à reconnaître son type
+* `-h`, qui va nous préciser la taille de chaque fichier dans un format *lisible par un humain* (plutôt qu'un astronomique chiffre en *bytes*)
+* `-l`, qui active le mode "liste détaillée", ou chaque élément est affiché sur sa propre ligne avec quelques informations utiles
+
+> **Note :** dans les systèmes UNIX, les fichiers cachés sont simplement des fichiers dont le nom commence par un `.` (*point*).
+
+Ce qui nous donne la commande :
+
+	$ ls -F -A -l -h
+
+Lorsque des options n'ont pas de valeurs, on peut les combiner :
+
+	$ ls -FAlh
+	
+Qui nous retournera :
+
+	-rw------- 1 leny leny  149 Oct  6 17:15 .bash_history
+	-rw-r--r-- 1 leny leny  220 Mar 31  2015 .bash_logout
+	-rw-r--r-- 1 leny leny 3.4K Mar 31  2015 .bashrc
+	-rw-r--r-- 1 leny leny  675 Mar 31  2015 .profile
+	drwxr-xr-x 2 leny leny 4.0K Mar 31  2015 public_html/
+
+Dans l'ordre, chaque colonne indique :
+
+1. les **permissions**
+2. le **nombre de liens** (information technique inutile pour notre usage)
+3. le **propriétaire**
+4. le **groupe** du propriétaire
+5. la **taille**
+6. la **date de dernière modification**
+7. le **nom de l'élément**
+
+> Nous reviendrons en détails sur les notions de **permissions**, **propriétaire** et **groupe** plus tard.
+
+##### Création d'un alias
+
+Vous en conviendrez, taper `ls -FAlh` à chaque fois qu'on veut afficher le contenu d'un dossier, ça peut être usant.
+
+Nous allons créer un *alias* avec la commande suivante : 
+
+	$ alias l="ls -FAlh"
+	
+Dorénavant, si nous tapons `l`, ça reviendra au même que de taper `ls -FAlh`.
+
+> **Note :** ce que nous venons de créer un alias *temporaire* ; après la fin de notre session sur le serveur, il ne sera plus actif.  
+> Nous verrons un peu plus tard comment créer des alias *permanents*.
+
