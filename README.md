@@ -95,6 +95,52 @@ Ou parfois via le flag `-h` ou `--help`, si `man` ne retourne rien.
 Pour commencer, nous allons travailler sur le serveur de l'école, pour lequel vous avez reçu (ou allez recevoir) un *login*, un *password* et l'*adresse du serveur*.   
 Nous allons donc utiliser **ssh** (Secure SHell) pour ouvrir un shell sur un serveur distant.
 
+#### Vérifier l'accessibilité du serveur
+
+Avant même de se connecter, il convient de s'assurer que notre serveur est bien en ligne. Pour cela, vous avez la commande `ping`, qui permet d'envoyer une petite requête vers une adresse et mesurer son temps de réponse (un peu comme un sonar de sous-marin). Les _gamers_ connaissent déjà cette notion, et la commande ping permet de tester et mesurer le temps de réponse d'un serveur (ce qu'on appelle la **latence**) pour s'assurer de l'état de la connexion entre votre machine et le serveur cible.  
+Bien entendu, on s'attend à avoir un temps de latence le plus petit possible.
+
+Nous allons lancer la commande suivante : 
+
+	$ ping [SERVER_ADDRESS]
+	
+Vous devriez voir ce genre de réponse : 
+
+	PING [SERVER_ADDRESS] ([SERVER_IP]): 56 data bytes
+	64 bytes from [SERVER_IP]: icmp_seq=0 ttl=53 time=12.823 ms
+	64 bytes from [SERVER_IP]: icmp_seq=1 ttl=53 time=12.296 ms
+	64 bytes from [SERVER_IP]: icmp_seq=2 ttl=53 time=13.280 ms
+	64 bytes from [SERVER_IP]: icmp_seq=3 ttl=53 time=12.793 ms
+	64 bytes from [SERVER_IP]: icmp_seq=4 ttl=53 time=11.803 ms
+	64 bytes from [SERVER_IP]: icmp_seq=5 ttl=53 time=11.923 ms
+	64 bytes from [SERVER_IP]: icmp_seq=6 ttl=53 time=11.284 ms
+	64 bytes from [SERVER_IP]: icmp_seq=7 ttl=53 time=12.241 ms
+	64 bytes from [SERVER_IP]: icmp_seq=8 ttl=53 time=12.714 ms
+	64 bytes from [SERVER_IP]: icmp_seq=9 ttl=53 time=11.635 ms
+	
+C'est bien, le ping est bon, mais la commande ne s'arrête pas ! En effet, par défaut, ping tourne indéfiniment, et nous devons l'arrêter pour recevoir quelques statistiques sur notre session de ping. 
+
+> Pour arrêter une commande, utilisez la séquence de touche `ctrl`+`c`.
+
+La commande ping devrait s'arrêter et vous afficher des statistiques comme ceux-ci :
+
+	--- [SERVER_ADDRESS] ping statistics ---
+	10 packets transmitted, 10 packets received, 0.0% packet loss
+	round-trip min/avg/max/stddev = 11.284/12.279/13.280/0.593 ms
+
+On a donc le nombre de paquets de données envoyés, le nombre de paquets reçus par le serveur, le pourcentage de pertes, suivi de quatre statistiques utiles, toutes exprimées en millisecondes.
+
+1. le plus petit score (le *meilleur*)
+2. le score moyen
+3. le plus haut score (le *moins bon*)
+4. l'[écart type](https://fr.wikipedia.org/wiki/%C3%89cart_type)
+
+La commande ping peut recevoir une option (`-c`) pour préciser le nombre de paquets à envoyer puis s'arrêter automatiquement.
+
+	$ ping -c 4 [SERVER_ADDRESS]
+
+#### Connexion au serveur
+
 Par défaut, ssh se connecte via le port 22. Le serveur de l'école étant configuré pour que ssh écoute sur le port 22, nous n'avons pas besoin de le préciser.
 
 Par contre, par défaut, ssh essaie de se connecter à un serveur distant en utilisant *votre nom d'utilisateur actuel*. Celui-ci ne concordant pas avec celui de votre compte sur le serveur de l'école, nous allons devoir manuellement l'indiquer, avec l'option `-l [LOGIN]`.
@@ -126,4 +172,4 @@ Si tout se passe bien, vous devriez avoir un petit message de bienvenue, suivi d
 Avant d'aller plus loin, faisons un peu de ménage. Si vous vous sentez perdu devant l'encombrement d'informations sur la console, la commande `clear` permet d'effacer le contenu de l'écran, histoire d'y revoir clair à nouveau.
 
 	$ clear
-	
+
