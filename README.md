@@ -467,10 +467,32 @@ _TODO_…
 
 _TODO_…
 
+### Liens
+
+_TODO_…
+
+### Flux & filtrage
+
+_TODO_…
+
 ### Informations sur les commandes
 
 _TODO_…
 
 ### Informations sur le système
+
+_TODO_…
+
+### Historique des commandes
+
+_TODO_…
+
+### Customiser son shell
+
+#### Alias
+
+_TODO_…
+
+#### Prompt
 
 _TODO_…
