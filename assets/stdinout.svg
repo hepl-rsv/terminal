@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="600px" height="209px" viewBox="0 0 600 209" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="background: #FFFFFF;">
+    <!-- Generator: Sketch 39.1 (31720) - http://www.bohemiancoding.com/sketch -->
+    <title>Artboard</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="187" y="65" width="203" height="75" rx="8"></rect>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="203" height="75" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard">
+            <use id="Rectangle" stroke="#666666" mask="url(#mask-2)" stroke-width="2" xlink:href="#path-1"></use>
+            <text id="command" font-family="FiraMono-Regular, Fira Mono" font-size="36" font-weight="normal" letter-spacing="0.832422256" fill="#666666">
+                <tspan x="210" y="112">command</tspan>
+            </text>
+            <path d="M132.5,103.5 L186.700745,103.5" id="Line" stroke="#666666" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path id="Line-decoration-1" d="M175.900745,106.5 L186.700745,103.5 L175.900745,100.5" stroke="#666666" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M390.5,103.5 L444.700745,103.5" id="Line" stroke="#666666" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path id="Line-decoration-1" d="M433.900745,106.5 L444.700745,103.5 L433.900745,100.5" stroke="#666666" stroke-linecap="round" stroke-linejoin="round"></path>
+            <polyline id="Line" stroke="#666666" stroke-linecap="round" stroke-linejoin="round" points="289 140 289 165.211914 318.079102 165.211914"></polyline>
+            <path id="Line-decoration-1" d="M307.279102,168.211914 L318.079102,165.211914 L307.279102,162.211914" stroke="#666666" stroke-linecap="round" stroke-linejoin="round"></path>
+            <text id="stdin" font-family="FiraMono-Regular, Fira Mono" font-size="32" font-weight="normal" letter-spacing="0.739930868" fill="#666666">
+                <tspan x="25" y="112">stdin</tspan>
+            </text>
+            <text id="stdout" font-family="FiraMono-Regular, Fira Mono" font-size="32" font-weight="normal" letter-spacing="0.739930868" fill="#666666">
+                <tspan x="455" y="112">stdout</tspan>
+            </text>
+            <text id="stderr" font-family="FiraMono-Regular, Fira Mono" font-size="32" font-weight="normal" letter-spacing="0.739930868" fill="#666666">
+                <tspan x="325" y="174">stderr</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

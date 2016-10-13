@@ -623,9 +623,46 @@ Lorsque nous faisons un `ls -F`, les liens symboliques et leurs cibles sont affi
 
 > **Attention :** si vous supprimez la cible d'un lien symbolique, le lien symbolique, lui continue à exister (et pointe donc vers un fichier qui n'existe plus), ce qui peut générer des erreurs.
 
-### Flux & filtrage
+### Flux
 
-_TODO_…
+Jusque là, hormis `man` et `nano`, les commandes affichent des résultats à l'écran.  
+En fait, il faut comprendre que ces commandes envoient leurs résultats dans ce qu'on appelle le **flux de sortie standard**, ou **stdout**.  
+Par défaut le shell va afficher ce qui est envoyé dans **stdout** à l'écran.
+
+Il existe trois flux, comme indiqué dans le schéma suivant : 
+
+![schéma des flux d'entrée/sortie d'une commande](./assets/stdinout.svg)
+
+* **stdin**, le flux d'entrée
+* **stdout**, le flux de sortie
+* **stderr**, le flux de sortie pour les erreurs
+
+Chacun d'entre eux a un numéro d'index : `0` pour **stdin**, `1` pour **stdout**, `2` pour **stderr**.
+
+#### Redirection des flux
+
+Il existe des opérateurs qui nous permettent de *rediriger* un flux, par exemple vers un fichier.  
+Disons qu'à la place d'afficher à l'écran le résultat de la commande `ping`, nous voudrions le sauvegarder dans un fichier. L'opérateur `>` nous permet de rediriger **stdout** vers un chemin (qui sera créé s'il n'existe pas, ou **écrasé** si existant) :
+
+	$ ping -c 4 google.be > ping.google.txt
+	
+Il existe d'autres opérateurs de redirection : 
+
+| Opérateur | Redirection |
+|:---------:|-------------|
+| `<` | **stdin** (permet d'injecter des données dans une commande) |
+| `>` | **stdout** |
+| `2>` | **stderr** |
+| `&>` | **stdout** & **stderr** |
+| `>>` | **stdout** en fin de cible (ajoute les éléments en fin de cible plutôt qu'écraser) |
+| `2>>` | **stderr** en fin de cible |
+| `&>>` | **stdout** & **stderr** en fin de cible |
+
+> **Note :** manipuler les flux en détail sort un peu du cadre de ce cours, mais c'est une fonctionnalité extrêmement pratique et puissante. N'hésitez pas à creuser le sujet !
+
+##### /dev/null
+
+Sur les système UNIX, le chemin `/dev/null` est un peu spécial : il s'agit d'un *trou noir* pour rediriger les flux dont on ne veut rien faire. Tout flux de données qui est envoyé vers `/dev/null` est automatiquement détruit.
 
 ### Informations sur les commandes
 
