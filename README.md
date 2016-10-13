@@ -461,7 +461,26 @@ Si on l'appelle sur un fichier existant, le contenu du fichier ne sera pas modif
 
 ### Éditer un fichier
 
-_TODO_…
+Éditer un fichier, c'est simplement modifier son contenu. En ligne de commande, pour modifier les fichiers, nous allons utiliser un **éditeur de texte**, comme nous le faisons avec **Atom** ou **Sublime Text** sur nos machines.  
+Comme pour les éditeurs de texte pour interface graphique, il existe une tripotée d'éditeurs de texte en ligne de commande.  
+
+Nous utiliserons **nano**, éditeur léger et très simple, généralement disponible sur la plupart des systèmes UNIX.
+
+> Les éditeurs de texte en ligne de commande et leur histoire pourrait faire l'objet d'un cours entier, et sont l'occasion d'être témoin d'une des plus vieilles et plus longue "_guerre_" d'opinion chez les administrateurs systèmes et développeurs entre les partisans de l'éditeur **vi** et ceux de l'éditeur **emacs**.
+
+Pour éditer un fichier avec nano, il suffit de taper la commande suivante : 
+
+	$ nano index.html
+	
+La fenêtre de nano est assez simple, et comporte une barre d'outils en bas de l'écran pour rappeler les commandes les plus communes (le symbole `^` représente la touche `control`) :
+
+* `^O` pour sauvegarder
+* `^X` pour quitter
+* `^K` pour couper une ligne de texte
+* `^U` pour coller une ligne de texte
+* `^C` pour afficher les informations sur la position du curseur
+
+Ça suffira pour notre utilisation basique mais régulière de nano. Malgré tout, comme pour tout éditeur, nano recelle des trésors cachés qui, si ça vous intéresse, sont à [portée de clic](https://rackerjack.uk/nano/).
 
 ### Gestion des droits
 
