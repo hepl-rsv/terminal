@@ -723,8 +723,58 @@ Par extension, si la commande which ne retourne rien, c'est que le programme n'e
 
 ### Informations sur le système
 
-_TODO_…
+#### uname
 
+La commande **uname** (pour *unix name*), permet d'en savoir plus sur le système courant : 
+
+	$ uname
+	
+Par défaut, elle n'affiche pas grand chose, mais l'utilisation du flag `-a` la rend beaucoup plus bavarde.  
+
+> Ces informations peuvent être utiles lors de recherches sur internet, lorque vous êtes confrontés à un bug.
+
+#### uptime
+
+La commande **uptime**	(littéralement _temps debout_) affiche la durée écoulée depuis le dernier redémarrage de la machine, le nombre d'utilisateurs actuellement connectés, ainsi que la charge mémoire (*load average*).
+
+	$ uptime
+	
+##### Charge mémoire
+
+La charge mémoire est une suite de trois chiffres, qui représente la charge sur la dernière **minute**, sur les dernières **cinq minutes**, et sur les dernières **quinze minutes**.
+
+Ces chiffres représentent le **nombre de processus occupés** (ou en attente de traitement) par un processeur.
+
+Afin de pouvoir interprêter ces chiffres au mieux, il est utile de connaître le nombre de processeurs disponibles sur le système (ce qu'on peut faire *via* la commande **nproc** ou la commande **lscpu**, plus détaillées).
+
+En divisant la charge par le nombre de processeur, on obtient un chiffre qui peut être interprêté comme suit : 
+
+- s'il est inférieur à `1`, c'est que le tâches sont exécutées sans attente par le(s) processeur(s), ce qui est généralement une bonne chose (si le serveur a des problèmes de performance, ils ne viennent pas des processeurs). 
+- s'il est constamment égal ou supérieur à `1`, ça signifie que le(s) processeur(s) manquent peut-être de vitesse ou qu'un processus "bloque" un processeur
+
+> **Note :** la charge mémoire n'est qu'un indicateur de l'état d'un système et ne peut être utilisées seule pour faire un diagnostic d'un serveur.
+
+#### ps
+
+La commande **ps** liste les processus et leur état *au moment du lancement* de la commande (ce qu'on appelle un *snapshot*), et permet d'étudier le comportement du système.
+
+	$ ps
+	
+Elle peut recevoir tout une série d'options, comme par exemple `-A` pour lister tous les processus (pas seulement ceux qui dépendent de l'utilisateur).
+
+Il peut être utile de *filtrer* les résultats de **ps** avec **grep**, par exemple, ne lister que les processus du serveur web Apache :
+
+	$ ps -A | grep apache
+
+#### top
+
+À l'inverse de la commande **ps**, **top** affiche en _temps réel_ l'état des processus de la machine, ainsi que quelques autres informations sur la mémoire.
+
+	$ top
+	
+Elle peut recevoir toute une série d'options pour modifier son comportement, ces méthodes de tri, etc.  
+Toutefois, si elle est disponible par défaut, ce n'est pas la commande la plus pratique pour faire du *monitoring*. Nous verrons plus tard dans le cours comment installer des outils plus pratiques.
+	
 ### Historique des commandes
 
 _TODO_…
