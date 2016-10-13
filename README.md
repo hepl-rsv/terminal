@@ -709,7 +709,17 @@ Il existe quelques opérateurs d'enchaînement, n'hésitez pas à les essayer.
 
 ### Informations sur les commandes
 
-_TODO_…
+La plupart des commandes ont une option permettant de connaître la version qui est installée sur votre système : 
+
+	$ nano --version
+	
+#### Chemin d'un programme
+
+La commande **which** (de l'anglais _lequel_) permet de connaître le chemin vers le programme correspondant à une commande. 
+
+	$ which git
+
+Par extension, si la commande which ne retourne rien, c'est que le programme n'est pas installé sur le système.
 
 ### Informations sur le système
 
