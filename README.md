@@ -607,9 +607,21 @@ Une solution tentante (et malheureusement trop souvent conseillée sur le net) s
 
 Ne donnez donc **jamais** plus de droits que **nécéssaire**. Un bon administrateur système est **paranoïaque**.
 
-### Liens
+### Liens symboliques
 
-_TODO_…
+Les notions de **liens** dans les systèmes de fichiers sont assez complexes et sortent du cadre de notre matière, mais nous serons de temps à autre confrontés à un type de lien un peu spéciaux, les **liens symboliques**.
+
+Un lien symbolique permet de créer une *référence* vers un élément de l'arborescence depuis un autre endroit. À l'inverse d'une *copie*, il n'est ici question que de "pointage", et donc pas besoin de changer le contenu d'un élément à plusieurs endroits, par exemple.
+
+> **Note :** les liens symboliques s'opposent aux [liens matériels](https://fr.wikipedia.org/wiki/Lien_mat%C3%A9riel), que nous ne couvreront pas dans ce cours.
+
+Pour créer un lien symbolique, on utilise la commande **ln** (*link*) avec le flag `-s` (pour _symbolic_) :
+
+	$ ln -s link_name.txt /path/to/target.txt
+
+Lorsque nous faisons un `ls -F`, les liens symboliques et leurs cibles sont affichés.
+
+> **Attention :** si vous supprimez la cible d'un lien symbolique, le lien symbolique, lui continue à exister (et pointe donc vers un fichier qui n'existe plus), ce qui peut générer des erreurs.
 
 ### Flux & filtrage
 
