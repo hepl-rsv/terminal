@@ -835,3 +835,10 @@ Pour recharger votre configuration, vous pouvez soit vous déconnecter/reconnect
 	
 Il existe des tonnes de très bonnes ressources à ce sujet, notamment ce très bon [article](https://www.digitalocean.com/community/tutorials/how-to-customize-your-bash-prompt-on-a-linux-vps) chez Digital Ocean.  
 Il existe également des outils pour générer interactivement votre prompt [à partir d'un formulaire](http://bashrcgenerator.com).
+
+### Conclusion
+
+Ce (*gros*) cours est une introduction aux bases les utiles de la ligne de commande : nous en approfondirons certains aspects lors de nos configurations de serveurs dans le cadre du cours.
+
+Et bien sûr, comme pour tout, _c'est en forgeant qu'on devient forgeron_ : n'hésitez pas à tester, modifier, chercher des commandes et acquérir ainsi une meilleure expérience dans le domaine.
+
