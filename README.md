@@ -664,6 +664,49 @@ Il existe d'autres opérateurs de redirection :
 
 Sur les système UNIX, le chemin `/dev/null` est un peu spécial : il s'agit d'un *trou noir* pour rediriger les flux dont on ne veut rien faire. Tout flux de données qui est envoyé vers `/dev/null` est automatiquement détruit.
 
+### Enchaînement de commandes
+
+De la même manière que dans les langages de programmation, il existe des opérateurs qui permettent d'enchaîner, voire de "combiner" des commandes.
+
+#### Enchaînement logique
+
+L'opérateur `&&` va exécuter la premier commande, et éxécutera la seconde si la première n'a pas retourné d'erreur.  
+Il existe une commande que nous verrons un peu plus tard, **which**, qui permet de savoir si un programme existe sur le système. Nous pourrions imaginer la séquence suivante, qui va tester l'existance d'un programme et, le cas échéant, lui faire afficher son numéro de version : 
+
+	$ which hg && hg --version
+	
+L'opérateur `||` fonctionne de manière inverse ; la seconde commande sera lancée si la première échoue : 
+
+	$ which hg || echo 'Oups!'
+
+#### Enchaînement physique
+
+L'enchaînement physique, aussi appelé "*piping*" du nom de son opérateur (le *pipe*, `|`) permet de *chaîner* des commandes : le **flux de sortie** de la première sera envoyé dans le **flux d'entrée** de la seconde.
+
+Cela nous permet de faire des opérations comme du filtrage ou du comptage.
+
+##### grep
+
+L'occasion rêvée de découvrir la commande **grep** (*global regular expression print*), qui permet d'opérer des recherches sur du texte ; en lui envoyant le résultat d'une commande, on peut en "*filtrer*" les résultats : 
+
+	$ cat /var/log/dpkg.log | grep installed
+	
+Ne nous retournera que les lignes du fichier `dpkg.log` contenant le mot "installed".
+
+> **Note :** Ça commence à devenir une habitude, mais une fois encore, on pourrait faire un cours entier rien que sur grep (et on en aurait même pas fait le tour). C'est un outil très puissant. Nous l'utiliserons un peu plus loin dans un autre exemple.
+
+#### Autres opérateurs
+
+Il existe quelques opérateurs d'enchaînement, n'hésitez pas à les essayer.
+
+| Opérateur | Fonction |
+|:---------:|----------|
+| `;` | Enchaînement séquentiel (une commande puis l'autre) |
+| `&` | Enchaînement parallèle (les deux commandes en même temps) |
+| `&&` | Enchaînement logique au succès |
+| `||` | Enchaînement logique à l'échec |
+| `|` | Enchaînement physique |
+
 ### Informations sur les commandes
 
 _TODO_…
