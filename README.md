@@ -349,7 +349,7 @@ Pour cela, on a l'embarras du choix.
 
 La commande **cat** (*concatenate*) affiche le contenu des fichiers passés en arguments, l'un après l'autre :
 
-	$ cat fichier-un.txt fichier-deux.txt
+	$ cat file-one.txt file-two.txt
 
 Le *hic*, c'est que l'affichage est brut et pas forcément pratique. Sans compter qu'il arrive que sur certains terminaux, il n'est pas possible de *scroller*, et donc de consulter l'entièreté d'un (long) fichier.
 
@@ -367,17 +367,17 @@ Le contenu du fichier est affiché, et vous pouvez utiliser les touches `haut` e
 
 La commande **head** permet d'afficher les *10 premières lignes* d'un fichier :
 
-	$ head fichier.txt
+	$ head file.txt
 
 Elle peut recevoir une option `-n` précisant le nombre de lignes à afficher :
 
-	$ head -n 5 fichier.txt
+	$ head -n 5 file.txt
 
 #### tail
 
 La commande **tail** permet d'afficher les *10 dernières lignes* d'un fichier :
 
-	$ tail fichier.txt
+	$ tail file.txt
 
 Elle peut recevoir la même option `-n` que **head**, ainsi qu'une option `-f`, très pratique, qui va "*suivre*" le fichier et mettre à jour son affichage à chaque fois qu'une ligne y sera ajoutée (pratique pour consulter des fichiers de log en temps réel).
 
