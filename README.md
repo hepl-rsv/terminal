@@ -797,7 +797,14 @@ Toutefois, si elle est disponible par défaut, ce n'est pas la commande la plus 
 	
 ### Historique des commandes
 
-_TODO_…
+La grande majorité des **shell** permettent de naviguer dans l'historique des commandes avec les flèches `haut` et `bas`.  
+Vous pouvez utiliser la commande **history** pour afficher les 500 dernières commandes entrées.
+
+	$ history
+	
+Elle peut recevoir un chiffre en argument, pour afficher X commandes : 
+
+	$ history 10
 
 ### Customiser son shell
 
