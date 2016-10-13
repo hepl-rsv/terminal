@@ -484,7 +484,128 @@ La fenêtre de nano est assez simple, et comporte une barre d'outils en bas de l
 
 ### Gestion des droits
 
-_TODO_…
+Nous l'avons vu lors du listing des dossiers, chaque fichier avait un **propriétaire**, un **groupe** et des **droits**.  
+Nous l'avons vu en (tentant) d'éditer un fichier : cette notion de droit protège les fichiers et dossier contre la lecture, l'édition ou l'exécution par certains utilisateurs.
+
+#### Propriétaire & groupes
+
+Comme vous l'avez déjà remarqué, chaque **utilisateur** connecté à une machine y a un nom (et un `id`) et certains droits. De la même manière, il existe des **groupes** permettant de lier des utilisateurs pour leur donner des droits communs (un utilisateur *peut* faire partie de *plusieurs* groupes).
+
+#### Droits / Permissions
+
+Chaque fichier ou dossier d'un système possède des **droits** (ou **permissions**), qui indique *qui peut faire quoi* avec l'élément en question.  
+Il en existe trois :
+
+* le droit de **lecture** (lire et parcourir l'élément)
+* le droit d'**écriture** (modifier l'élément)
+* le droit d'**exécution** (exécuter contenant du code)
+
+Pour chaque élément du système, ces trois droits sont exprimés pour trois _cibles_ :
+
+* les droits pour le **propriétaire** de l'élément
+* les droits pour les membres du **groupe** de l'élément
+* les droits pour **tous les autres** membres du système
+
+#### Afficher les droits
+
+Pour afficher les droits d'un fichier, nous pouvons le faire *via* la commande `ls`, comme nous l'avons vu plutôt, ou en utilisant la commande **stat** :
+
+	$ stat file.txt
+	
+Les droits peuvent être exprimer sous deux formes : **textuelle** ou en **base octale**.
+
+##### Forme textuelle
+
+Sous forme textuelle, les droits sont exprimés par une chaîne de 10 caractères, le premier indiquant la nature de l'élément (`-` pour un fichier, `d` pour un dossier), les trois suivants représentent les droits du **propriétaire**, les trois suivants ceux du **groupe** et les trois derniers ceux du **reste**.
+
+##### Forme octale
+
+Sous forme octale, les droits sont exprimés par une nombre de 3 chiffres (parfois préfixés d'un 0 pour indiquer le fait qu'on travaille en base `8`), et là encore, le premier chiffre représente les droits du **propriétaire**, le suivant ceux du **groupe** et le dernier ceux du **reste**.
+
+##### Représentation des droits
+
+| Droits | Valeur textuelle | Valeur octale |
+|:-------|:----------------:|:-------------:|
+| **Aucun** | `---` | `0` |
+| **Exécution seulement** | `--x` | `1` |
+| **Écriture seulement** | `-w-` | `2` |
+| **Écriture & exécution** | `-wx` | `3` |
+| **Lecture seulement** | `r--` | `4` |
+| **Lecture & exécution** | `r-x` | `5` |
+| **Lecture & écriture** | `rw-` | `6` |
+| **Tous** | `rwx` | `7` |
+
+#### En savoir plus sur soi-même
+
+Grâce aux commandes `stat` et `ls`, on peut afficher les droits, propriétaire et groupe d'un élément… mais comment savoir qui nous sommes par rapport au système ?
+
+La commande **whoami** (_qui suis-je ?_ en anglais) affichera votre nom d'utilisateur sur le système : 
+
+	$ whoami
+	
+La commande **groups** affichera le ou les groupes desquels vous êtes membres :
+
+	$ groups
+
+La commande **id** affichera l'id de l'utisateur (et son nom), ainsi que les ids et noms pour chaque groupe dont il est membre : 
+
+	$ id
+
+#### Utilisateur `root`
+
+Sur les systèmes UNIX, il existe un utilisateur un peu spécial, nommé `root` (`uid 0`), membre du groupe `root` (`gid 0`).  
+On l'appelle aussi **super-utilisateur** ou **administrateur principal** (ou _substitute user_), il possède tous les droits sur tout le système.
+
+##### sudo
+
+Selon la configuration des droits, il est possible (et probable) que certaines commandes "_dangereuses_" ne puissent être lancées par un utilisateur normale.
+
+Il est toutefois possible d'utiliser la commande **sudo** (_substitute user do_) comme préfixe d'une commande : 
+
+	$ sudo nano system_important_file.txt
+	
+La commande vous demandera votre mot de passe, et si `root` vous a autorisé à utiliser sudo, alors la commande sera lancée "comme si" vous étiez `root`.
+
+> Cette commande est bien sûr à manier avec précautions !
+
+#### Modifier le propriétaire / groupe
+
+Pour modifier le propriétaire d'un fichier, on utilise la commande **chown** (_change owner_) : 
+
+	$ chown NEW_OWNER[:NEW_GROUP] file.txt
+	
+Le groupe est optionnel.
+
+> **Note :** bien que certains systèmes permettent au propriétaire d'un fichier de transférer sa propriété à un autre utilisateur, la plupart des systèmes UNIX n'autorisent cette opération qu'à `root`.
+
+Pour modifier le groupe d'un fichier, on utilise la commande **chgrp** (_change group_) :
+
+	$ chgrp NEW_GROUP file.txt
+	
+Vous pouvez changer un élement de groupe pour peu que vous ayez les droits **et** que vous soyez membres du groupe de destination. Sinon, la commande doit être lancée par `root`.
+
+#### Modifier les droits
+
+Pour modifier les droits d'un élément du système, on utilise la commande **chmod** (_change mode_).  
+Il existe plusieurs manières de l'écrire, la plus commune étant :  
+
+	$ chmod [OCTAL_PERMISSIONS] file.txt
+	
+Par exemple :
+
+	$ chmod 764 file.txt
+	
+De la même manière que pour **cp**, vous pouvez utiliser le flag `-R` pour changer _récursivement_ les permissions de chaque élément d'un dossier : 
+
+	$ chmod -R 664 folder
+
+##### Bien choisir ses droits
+
+Lorsqu'on travaille sur un serveur web, on est parfois amené à être confronté à des problèmes de droits d'accès sur des ressources.
+
+Une solution tentante (et malheureusement trop souvent conseillée sur le net) serait de se dire de passer l'élément incriminé en `777`, donnant tous les droits à tout le monde, y compris, par exemple, à un _serveur web_ (le programme) d'exécuter le code à l'interieur d'un fichier... qui aurait été _uploadé_ par un utilisateur de votre site _via_ un formulaire d'upload : un joli **trou de sécurité** en puissance, donc.
+
+Ne donnez donc **jamais** plus de droits que **nécéssaire**. Un bon administrateur système est **paranoïaque**.
 
 ### Liens
 
