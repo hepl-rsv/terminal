@@ -808,10 +808,30 @@ Elle peut recevoir un chiffre en argument, pour afficher X commandes :
 
 ### Customiser son shell
 
+Il est possible de configurer assez finement son shell pour le rendre aussi personnel qu'une brosse à dent. Il existe des frameworks et outils entièrement dévolus à cette tâche, et la personnalisation d'un shell fait entre autre partie de ce qu'on appelle les [dotfiles](https://github.com/hepl-web/toolbox/blob/master/resources/dotfiles.md).
+
 #### Alias
 
-_TODO_…
+On a vu lors de la présentation de **ls** comment créer des **alias**.  
+Le souci, c'est qu'ils sont *temporaires* : si vous vous déconnectez/reconnectez au serveur, vos alias auront disparus.
+
+Il est toutefois possible de rendre des alias permanent en utilisant le fichier `.bash_rc`. Chaque utilisateur du **shell** *bash* ont un fichier `.bashrc` dans leur dossier de départ.
+
+Le contenu de ce fichier (*rc* pour *runcom*, *run command*) est exécuté à chaque fois que vous lancer une session sur une machine.
+
+Son contenu est écrit en _langage bash_ (qui n'est à peu près rien d'autre qu'une successions de commandes), et donc, si on ajoute un alias dans ce fichier, il sera exécuté à chaque nouvelle session, le rendant *permanent* pour vous.
 
 #### Prompt
 
-_TODO_…
+Le contenu de votre **prompt** est stocké dans la variable `PS1`, que vous pouvez modifier dans votre `.bashrc`.
+
+Pour l'exemple, on va modifier notre prompt pour ajouter une ligne vide entre chaque commande. Ajoutons la ligne suivante à la fin de notre `.bashrc` :
+
+	PS1="\n\u@\h:\w\$ "
+
+Pour recharger votre configuration, vous pouvez soit vous déconnecter/reconnecter, ou simplement utiliser la commande **source**, qui exécute le contenu d'un fichier, sur notre fichier `.bashrc` :
+
+	source .bashrc
+	
+Il existe des tonnes de très bonnes ressources à ce sujet, notamment ce très bon [article](https://www.digitalocean.com/community/tutorials/how-to-customize-your-bash-prompt-on-a-linux-vps) chez Digital Ocean.  
+Il existe également des outils pour générer interactivement votre prompt [à partir d'un formulaire](http://bashrcgenerator.com).
