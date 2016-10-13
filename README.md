@@ -482,6 +482,26 @@ La fenêtre de nano est assez simple, et comporte une barre d'outils en bas de l
 
 Ça suffira pour notre utilisation basique mais régulière de nano. Malgré tout, comme pour tout éditeur, nano recelle des trésors cachés qui, si ça vous intéresse, sont à [portée de clic](https://rackerjack.uk/nano/).
 
+### Tailles & occupation
+
+Nous avons vu avec **ls** qu'il était possible de connaître la taille des fichiers. Seulement, la taille des dossiers est toujours de `4.0K`. En fait, c'est 4K, c'est la place que prend la référence du chemin vers le dossier (c'est technique et, globalement, on s'en fout dans notre contexte d'utilisation), mais ça ne résoud pas notre problème, comment connaître la taille d'un dossier.
+
+#### du
+
+La commande **du** (pour *disk usage*) va afficher la place que prend un chemin sur le disque : 
+
+	$ du folder
+	
+On a un peu le même problème qu'avec **ls** ; **du** affiche les résultats en *bytes*, pas vraiment lisible pour un humain. On va utiliser les options `-h` (pour rendre les tailles lisibles) et `-a` pour lister tous les éléments : 
+
+	$ du -ha folder
+	
+#### df
+
+La commande **df** (pour *disk free*) va afficher l'espace libre sur chaque disque dur. On va pas se faire avoir et on utilisera directement l'option `-h` : 
+
+	$ df -h
+
 ### Gestion des droits
 
 Nous l'avons vu lors du listing des dossiers, chaque fichier avait un **propriétaire**, un **groupe** et des **droits**.  
