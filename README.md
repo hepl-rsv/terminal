@@ -651,7 +651,7 @@ Par défaut le shell va afficher ce qui est envoyé dans **stdout** à l'écran.
 
 Il existe trois flux, comme indiqué dans le schéma suivant : 
 
-![schéma des flux d'entrée/sortie d'une commande](./assets/stdinout.svg)
+![schéma des flux d'entrée/sortie d'une commande](https://raw.githubusercontent.com/hepl-rsv/terminal/master/assets/stdinout.svg)
 
 * **stdin**, le flux d'entrée
 * **stdout**, le flux de sortie
