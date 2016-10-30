@@ -637,11 +637,11 @@ Un lien symbolique permet de créer une *référence* vers un élément de l'arb
 
 Pour créer un lien symbolique, on utilise la commande **ln** (*link*) avec le flag `-s` (pour _symbolic_) :
 
-	$ ln -s link_name.txt /path/to/target.txt
+	$ ln -s /path/to/target.txt link_name.txt
 
 Lorsque nous faisons un `ls -F`, les liens symboliques et leurs cibles sont affichés.
 
-> **Attention :** si vous supprimez la cible d'un lien symbolique, le lien symbolique, lui continue à exister (et pointe donc vers un fichier qui n'existe plus), ce qui peut générer des erreurs.
+> **Attention :** si vous supprimez la cible d'un lien symbolique, le lien symbolique, lui, continue à exister (et pointe donc vers un fichier qui n'existe plus), ce qui peut générer des erreurs.
 
 ### Flux
 
